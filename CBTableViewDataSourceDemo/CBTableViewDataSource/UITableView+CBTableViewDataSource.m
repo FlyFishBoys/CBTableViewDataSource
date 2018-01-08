@@ -21,6 +21,28 @@ static NSString * getIdentifier (){
 
 @implementation UITableView (CBTableViewDataSource)
 
+
++(void)load
+{
+    Method originalMethod = class_getInstanceMethod(self, @selector(layoutSubviews));
+    Method swizzledMethod = class_getInstanceMethod(self, @selector(new_layoutSubviews));
+    method_exchangeImplementations(originalMethod, swizzledMethod);
+}
+
+-(void)new_layoutSubviews
+{
+    [self new_layoutSubviews];
+    
+    if ([self respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self setSeparatorInset:self.separatorInset];
+    }
+    
+    if ([self respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self setLayoutMargins:self.separatorInset];
+    }
+}
+
+
 - (CBBaseTableViewDataSource *)cbTableViewDataSource {
     return objc_getAssociatedObject(self,_cmd);
 }

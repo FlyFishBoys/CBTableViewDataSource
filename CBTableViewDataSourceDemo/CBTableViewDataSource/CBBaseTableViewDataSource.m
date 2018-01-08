@@ -34,6 +34,24 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    UIEdgeInsets insets = self.sections[(NSUInteger) indexPath.section].separatorInset;
+    if (UIEdgeInsetsEqualToEdgeInsets(insets, UIEdgeInsetsZero)) {
+        insets = tableView.separatorInset;
+    }
+    
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset: insets];
+    }
+
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins: insets];
+    }
+}
+
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return self.sections[(NSUInteger) section].headerTitle;
 }

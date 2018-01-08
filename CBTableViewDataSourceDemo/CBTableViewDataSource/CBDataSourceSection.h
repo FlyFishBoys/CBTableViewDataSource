@@ -19,6 +19,7 @@
 @property(nonatomic, strong) UIView * footerView;
 @property(nonatomic, assign) BOOL isAutoHeight;
 @property(nonatomic, assign) CGFloat staticHeight;
+@property(nonatomic, assign) UIEdgeInsets separatorInset;
 
 @property(nonatomic, assign) UITableViewCellStyle tableViewCellStyle;
 @end

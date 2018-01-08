@@ -106,4 +106,12 @@
     };
 }
 
+-(CBTableViewSectionMaker *(^)(UIEdgeInsets ))separatorInset
+{
+    return ^CBTableViewSectionMaker *(UIEdgeInsets inset) {
+        self.section.separatorInset = inset;
+        return self;
+    };
+}
+
 @end

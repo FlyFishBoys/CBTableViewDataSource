@@ -22,6 +22,7 @@
 @property (nonatomic,readonly) CBTableViewSectionMaker * (^footerTitle)(NSString*);
 @property (nonatomic,readonly) CBTableViewSectionMaker * (^headerView)(UIView*(^)());
 @property (nonatomic,readonly) CBTableViewSectionMaker * (^footerView)(UIView*(^)());
+@property (nonatomic,readonly) CBTableViewSectionMaker * (^separatorInset)(UIEdgeInsets);
 
 
 @property(nonatomic, strong) CBDataSourceSection * section;
