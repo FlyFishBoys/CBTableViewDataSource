@@ -14,6 +14,10 @@
 #import "GoodsCell.h"
 #import "UINavigationBar+Awesome.h"
 #import "CBTableViewDataSource/CBTableViewDataSource.h"
+#import "Masonry.h"
+
+
+typedef void(^AdapaterBlock)(UITableViewCell * cell,NSArray * data,NSUInteger index);
 
 @interface DemoThreeViewController ()
 
@@ -74,17 +78,23 @@ void(^didScroll)(UIScrollView * scrollView);
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.view addSubview:_tableView];
 
+        
         [_tableView cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
             [make scrollViewDidScroll:didScroll];
 
-            [make makeSection:^(CBTableViewSectionMaker * section) {
-                section.cell([CycleScrollViewCell class])
-                        .data(@[self.viewModel.ads])
-                        .adapter(^(CycleScrollViewCell * cell,NSArray * data,NSUInteger index){
-                            cell.data = data;
-                        })
-                        .height(SCREEN_WIDTH * 0.48f);
+
+            [make makeSection:^void(CBTableViewSectionMaker * section) {
+                section.cell([CycleScrollViewCell class]);
+                section.data(@[self.viewModel.ads]);
+                
+                section.adapter(^(CycleScrollViewCell * cell,NSArray * data,NSUInteger index){
+                    cell.data = data;
+                });
+              
+                section.height(SCREEN_WIDTH * 0.48f);
             }];
+            
+            
             [make makeSection:^void(CBTableViewSectionMaker * section) {
                 section.cell([HomeCategoryCell class])
                         .data(@[self.viewModel.category])
@@ -93,6 +103,21 @@ void(^didScroll)(UIScrollView * scrollView);
                         })
                         .height(SCREEN_WIDTH * 0.48f);
             }];
+          
+            [make makeSection:^void(CBTableViewSectionMaker * section) {
+                section.cell([HomeCategoryCell class])
+                .data(@[self.viewModel.category])
+                .adapter(^(HomeCategoryCell * cell,NSArray * data,NSUInteger index){
+                    cell.category = data;
+                })
+                .adapter(^(HomeCategoryCell* cell, id data, NSUInteger index) {
+                     cell.category = data;
+                })
+                
+                .height(SCREEN_WIDTH * 0.48f);
+            }];
+            
+            
             [make makeSection:^void(CBTableViewSectionMaker * section) {
                 section
                     .cell([HomeActivityCell class])
@@ -102,7 +127,9 @@ void(^didScroll)(UIScrollView * scrollView);
                     })
                     .height(SCREEN_WIDTH * 0.36f);
             }];
+            
             [make makeSection:^void(CBTableViewSectionMaker * section) {
+              
                 section
                     .cell([GoodsCell class])
                     .data(self.viewModel.hotGoods)

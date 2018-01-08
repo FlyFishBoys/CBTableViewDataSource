@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface ClassB : NSObject
-
+@property(nonatomic, readonly) ClassB *(^ddd)(BOOL enable);
+ 
+- (id)initWithString:(NSString *)str;
 @end

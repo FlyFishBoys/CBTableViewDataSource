@@ -35,6 +35,7 @@
     };
 }
 
+
 - (CBTableViewSectionMaker * (^)(CGFloat))height {
     return ^CBTableViewSectionMaker *(CGFloat height) {
         self.section.staticHeight = height;
@@ -42,7 +43,9 @@
     };
 }
 
-- (CBTableViewSectionMaker * (^)())autoHeight {
+
+-(CBTableViewSectionMaker *(^)(void))autoHeight
+{
     return ^CBTableViewSectionMaker * {
         self.section.isAutoHeight = YES;
         return self;
@@ -86,6 +89,8 @@
     CFRelease(uuidStrRef);
     return retStr;
 }
+
+
 
 - (CBTableViewSectionMaker * (^)(UIView * (^)()))headerView {
     return ^CBTableViewSectionMaker *(UIView * (^view)()) {

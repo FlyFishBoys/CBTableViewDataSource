@@ -103,7 +103,7 @@
             make.left.equalTo(self.contentView);
             make.right.equalTo(self.contentView);
             make.bottom.equalTo(self.contentView);
-            make.top.equalTo(_imgView.mas_bottom).offset(15);
+            make.top.equalTo(_imgView.mas_bottom).offset(0);
             make.height.offset(10);
         }];
         border.backgroundColor = [UIColor colorWithRed:0.94 green:0.95 blue:0.96 alpha:1.00];

@@ -33,6 +33,11 @@
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.view addSubview:_tableView];
+        
+        [self.viewModel.feed addObjectsFromArray:self.viewModel.feed];
+        [self.viewModel.feed addObjectsFromArray:self.viewModel.feed];
+        [self.viewModel.feed addObjectsFromArray:self.viewModel.feed];
+        
         [_tableView cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
             [make makeSection:^(CBTableViewSectionMaker *section) {
                 section.cell([FeedCell class])

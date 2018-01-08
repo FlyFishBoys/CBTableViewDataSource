@@ -8,26 +8,21 @@
 
 #pragma mark -- Class CBDataSourceSectionMaker
 @class CBDataSourceSection;
+@protocol CBBaseTableViewDataSourceProtocol;
 
 @interface CBTableViewSectionMaker : NSObject
 
-- (CBTableViewSectionMaker * (^)(Class))cell;
+@property (nonatomic,readonly) CBTableViewSectionMaker * (^cell)(Class);
+@property (nonatomic,readonly) CBTableViewSectionMaker * (^data)(NSArray*);
+@property (nonatomic,readonly) CBTableViewSectionMaker * (^adapter)(void(^)(id cell, id data, NSUInteger index));
+@property (nonatomic,readonly) CBTableViewSectionMaker * (^autoHeight)(void);
+@property (nonatomic,readonly) CBTableViewSectionMaker * (^height)(CGFloat);
+@property (nonatomic,readonly) CBTableViewSectionMaker * (^event)(void(^)(NSUInteger index, id data));
+@property (nonatomic,readonly) CBTableViewSectionMaker * (^headerTitle)(NSString*);
+@property (nonatomic,readonly) CBTableViewSectionMaker * (^footerTitle)(NSString*);
+@property (nonatomic,readonly) CBTableViewSectionMaker * (^headerView)(UIView*(^)());
+@property (nonatomic,readonly) CBTableViewSectionMaker * (^footerView)(UIView*(^)());
 
-- (CBTableViewSectionMaker * (^)(NSArray *))data;
-
-- (CBTableViewSectionMaker * (^)(void(^)(id cell, id data, NSUInteger index)))adapter;
-
-- (CBTableViewSectionMaker * (^)(CGFloat))height;
-
-- (CBTableViewSectionMaker * (^)())autoHeight;
-
-- (CBTableViewSectionMaker * (^)(void(^)(NSUInteger index, id data)))event;
-
-- (CBTableViewSectionMaker * (^)(NSString *))headerTitle;
-- (CBTableViewSectionMaker * (^)(NSString *))footerTitle;
-
-- (CBTableViewSectionMaker * (^)(UIView * (^)()))headerView;
-- (CBTableViewSectionMaker * (^)(UIView * (^)()))footerView;
 
 @property(nonatomic, strong) CBDataSourceSection * section;
 

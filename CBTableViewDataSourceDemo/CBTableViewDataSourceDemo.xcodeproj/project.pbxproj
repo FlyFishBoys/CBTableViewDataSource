@@ -81,6 +81,8 @@
 		D19DD0D71D02FC3300774243 /* BaseNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D19DD0D61D02FC3300774243 /* BaseNavigationViewController.m */; };
 		D19DD0DE1D03130400774243 /* HomeActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D19DD0DB1D03130400774243 /* HomeActivityCell.m */; };
 		D19DD0DF1D03130400774243 /* HomeCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D19DD0DD1D03130400774243 /* HomeCategoryCell.m */; };
+		FFBA7DAE200341D2004E7991 /* ClassA.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBA7DAD200341D2004E7991 /* ClassA.m */; };
+		FFBA7DB1200341E6004E7991 /* ClassB.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBA7DB0200341E6004E7991 /* ClassB.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,6 +212,10 @@
 		D19DD0DB1D03130400774243 /* HomeActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeActivityCell.m; sourceTree = "<group>"; };
 		D19DD0DC1D03130400774243 /* HomeCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCategoryCell.h; sourceTree = "<group>"; };
 		D19DD0DD1D03130400774243 /* HomeCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCategoryCell.m; sourceTree = "<group>"; };
+		FFBA7DAC200341D2004E7991 /* ClassA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassA.h; sourceTree = "<group>"; };
+		FFBA7DAD200341D2004E7991 /* ClassA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassA.m; sourceTree = "<group>"; };
+		FFBA7DAF200341E6004E7991 /* ClassB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassB.h; sourceTree = "<group>"; };
+		FFBA7DB0200341E6004E7991 /* ClassB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassB.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,6 +321,10 @@
 			children = (
 				D19DCFEB1D02EDA900774243 /* AppDelegate.h */,
 				D19DCFEC1D02EDA900774243 /* AppDelegate.m */,
+				FFBA7DAC200341D2004E7991 /* ClassA.h */,
+				FFBA7DAD200341D2004E7991 /* ClassA.m */,
+				FFBA7DAF200341E6004E7991 /* ClassB.h */,
+				FFBA7DB0200341E6004E7991 /* ClassB.m */,
 				D19DCFF41D02EDA900774243 /* Assets.xcassets */,
 				D19DCFF61D02EDA900774243 /* LaunchScreen.storyboard */,
 				D19DCFF91D02EDA900774243 /* Info.plist */,
@@ -693,6 +703,7 @@
 				D19DCFEA1D02EDA900774243 /* main.m in Sources */,
 				D19DD0DE1D03130400774243 /* HomeActivityCell.m in Sources */,
 				D19DD0851D02F10100774243 /* MainViewController.m in Sources */,
+				FFBA7DAE200341D2004E7991 /* ClassA.m in Sources */,
 				D19DD0D11D02F9CE00774243 /* DemoThreeViewModel.m in Sources */,
 				789F6881DF97F01ADDF3F9F7 /* CycleScrollViewCell.m in Sources */,
 				789F6C672082030B4B549E90 /* GoodsCell.m in Sources */,
@@ -701,6 +712,7 @@
 				789F6796A73E8B4E3E31C823 /* DemoFourViewModel.m in Sources */,
 				789F6B7E00660A45E01EC8FA /* FeedCell.m in Sources */,
 				789F6AB3EFECC6249858771D /* DemoTwoViewController.m in Sources */,
+				FFBA7DB1200341E6004E7991 /* ClassB.m in Sources */,
 				789F6AB7EBAC1C96DE7CE9D2 /* DemoTwoViewModel.m in Sources */,
 				D105AA5B1D15A6400081C603 /* CBTableViewDataSourceMaker.m in Sources */,
 				789F64F9E9DF667AE165A6D6 /* CustomCell.m in Sources */,
