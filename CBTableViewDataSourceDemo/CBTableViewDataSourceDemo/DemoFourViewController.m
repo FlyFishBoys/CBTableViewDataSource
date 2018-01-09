@@ -40,9 +40,18 @@
 //        [self.viewModel.feed addObjectsFromArray:self.viewModel.feed];
         
         [_tableView cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
+            
+            make.emptyDataView(^UIView *{
+               
+                UIView * emptyView = [UIView new];
+                emptyView.backgroundColor = [UIColor redColor];
+                emptyView.frame = _tableView.bounds;
+                return emptyView;
+            });
+            
             [make makeSection:^(CBTableViewSectionMaker *section) {
                 section.cell([FeedCell class])
-                        .data(self.viewModel.feed)
+                        .data(@[])
                         .adapter(^(FeedCell * cell,NSDictionary * data,NSUInteger index){
                             [cell.avatarView setImage:[UIImage imageNamed:data[@"avatar"]]];
                             [cell.nameView setText:data[@"user"]];
@@ -63,28 +72,28 @@
                         .autoHeight();
             }];
             
-            [make makeSection:^(CBTableViewSectionMaker *section) {
-                section.cell([FeedCell class])
-                .data(self.viewModel.feed)
-                .adapter(^(FeedCell * cell,NSDictionary * data,NSUInteger index){
-                    [cell.avatarView setImage:[UIImage imageNamed:data[@"avatar"]]];
-                    [cell.nameView setText:data[@"user"]];
-                    [cell.dateView setText:data[@"date"]];
-                    [cell.detailView setText:data[@"content"]];
-                    [cell.imgView setImage:[UIImage imageNamed:data[@"image"]]];
-                })
-
-                .headerView(^UIView *{
-
-                    UIView * testView = [UIView new];
-                    testView.backgroundColor = [UIColor blueColor];
-                    testView.frame = CGRectMake(0, 0, 100, 100);
-
-                    return testView;
-
-                })
-                .autoHeight();
-            }];
+//            [make makeSection:^(CBTableViewSectionMaker *section) {
+//                section.cell([FeedCell class])
+//                .data(self.viewModel.feed)
+//                .adapter(^(FeedCell * cell,NSDictionary * data,NSUInteger index){
+//                    [cell.avatarView setImage:[UIImage imageNamed:data[@"avatar"]]];
+//                    [cell.nameView setText:data[@"user"]];
+//                    [cell.dateView setText:data[@"date"]];
+//                    [cell.detailView setText:data[@"content"]];
+//                    [cell.imgView setImage:[UIImage imageNamed:data[@"image"]]];
+//                })
+//
+//                .headerView(^UIView *{
+//
+//                    UIView * testView = [UIView new];
+//                    testView.backgroundColor = [UIColor blueColor];
+//                    testView.frame = CGRectMake(0, 0, 100, 100);
+//
+//                    return testView;
+//
+//                })
+//                .autoHeight();
+//            }];
             
         }];
     }
