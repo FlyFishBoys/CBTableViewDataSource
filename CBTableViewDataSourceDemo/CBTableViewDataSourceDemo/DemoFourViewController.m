@@ -14,6 +14,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [self.navigationController.navigationBar lt_setBackgroundColor: [UIColor colorWithRed:0.27 green:0.75 blue:0.78 alpha:1.00]];
@@ -34,9 +35,9 @@
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.view addSubview:_tableView];
         
-        [self.viewModel.feed addObjectsFromArray:self.viewModel.feed];
-        [self.viewModel.feed addObjectsFromArray:self.viewModel.feed];
-        [self.viewModel.feed addObjectsFromArray:self.viewModel.feed];
+//        [self.viewModel.feed addObjectsFromArray:self.viewModel.feed];
+//        [self.viewModel.feed addObjectsFromArray:self.viewModel.feed];
+//        [self.viewModel.feed addObjectsFromArray:self.viewModel.feed];
         
         [_tableView cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
             [make makeSection:^(CBTableViewSectionMaker *section) {
@@ -49,8 +50,42 @@
                             [cell.detailView setText:data[@"content"]];
                             [cell.imgView setImage:[UIImage imageNamed:data[@"image"]]];
                         })
+                
+                .headerView(^UIView *{
+                    
+                    UIView * testView = [UIView new];
+                    testView.backgroundColor = [UIColor redColor];
+                    testView.frame = CGRectMake(0, 0, 100, 50);
+                    
+                    return testView;
+                    
+                })
                         .autoHeight();
             }];
+            
+            [make makeSection:^(CBTableViewSectionMaker *section) {
+                section.cell([FeedCell class])
+                .data(self.viewModel.feed)
+                .adapter(^(FeedCell * cell,NSDictionary * data,NSUInteger index){
+                    [cell.avatarView setImage:[UIImage imageNamed:data[@"avatar"]]];
+                    [cell.nameView setText:data[@"user"]];
+                    [cell.dateView setText:data[@"date"]];
+                    [cell.detailView setText:data[@"content"]];
+                    [cell.imgView setImage:[UIImage imageNamed:data[@"image"]]];
+                })
+
+                .headerView(^UIView *{
+
+                    UIView * testView = [UIView new];
+                    testView.backgroundColor = [UIColor blueColor];
+                    testView.frame = CGRectMake(0, 0, 100, 100);
+
+                    return testView;
+
+                })
+                .autoHeight();
+            }];
+            
         }];
     }
     return _tableView;

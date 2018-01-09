@@ -13,6 +13,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [self.navigationController.navigationBar lt_setBackgroundColor: [UIColor colorWithRed:0.27 green:0.75 blue:0.78 alpha:1.00]];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
@@ -35,23 +39,37 @@
         [self.view addSubview:_tableView];
 
         // just one line here
-        [_tableView cb_makeSectionWithData:self.viewModel.data];
+       // [_tableView cb_makeSectionWithData:self.viewModel.data];
         
-//        [_tableView cb_makeDataSource:^(CBTableViewDataSourceMaker *make) {
-//
-//            [make makeSection:^(CBTableViewSectionMaker *section) {
-//
-//                section.separatorInset(UIEdgeInsetsMake(0, 30, 15, 0));
-//                section.data(self.viewModel.data);
-//                section.cell([UITableViewCell class]);
-//                section.adapter(^(UITableViewCell* cell, id data, NSUInteger index) {
-//                    cell.textLabel.text = [data valueForKey:@"text"];
-//                    cell.detailTextLabel.text = [data valueForKey:@"value"];
-//
-//                });
-//                section.height(50);
-//            }];
-//        }];
+        [self.viewModel.data addObjectsFromArray:self.viewModel.data];
+        [self.viewModel.data addObjectsFromArray:self.viewModel.data];
+        [self.viewModel.data addObjectsFromArray:self.viewModel.data];
+
+        [_tableView cb_makeDataSource:^(CBTableViewDataSourceMaker *make) {
+
+            [make makeSection:^(CBTableViewSectionMaker *section) {
+
+                section.separatorInset(UIEdgeInsetsMake(0, 30, 15, 0));
+                section.data(self.viewModel.data);
+                section.cell([UITableViewCell class]);
+                section.adapter(^(UITableViewCell* cell, id data, NSUInteger index) {
+                    cell.textLabel.text = [data valueForKey:@"text"];
+                    cell.detailTextLabel.text = [data valueForKey:@"value"];
+
+                });
+                section.headerView(^UIView *{
+                    
+                    UIView * testView = [UIView new];
+                    testView.backgroundColor = [UIColor redColor];
+                    testView.frame = CGRectMake(0, 0, 100, 50);
+                    
+                    return testView;
+                    
+                });
+                
+                section.height(50);
+            }];
+        }];
         
     }
     return _tableView;

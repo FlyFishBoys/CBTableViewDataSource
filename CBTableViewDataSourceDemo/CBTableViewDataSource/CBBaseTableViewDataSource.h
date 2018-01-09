@@ -20,6 +20,7 @@ typedef void (^EventBlock)(NSUInteger index,id data);
 @interface CBBaseTableViewDataSource : NSObject <CBBaseTableViewDataSourceProtocol>
 
 @property(nonatomic, strong) NSMutableArray<CBDataSourceSection * > * sections;
+@property(nonatomic, assign) BOOL moveSectionHeaderEnable;//默认no,悬浮，设置后禁用悬浮效果
 
 @end
 

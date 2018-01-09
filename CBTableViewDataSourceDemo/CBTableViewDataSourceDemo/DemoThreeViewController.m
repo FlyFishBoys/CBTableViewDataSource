@@ -29,6 +29,7 @@ void(^didScroll)(UIScrollView * scrollView);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 
     didScroll = ^(UIScrollView * scrollView) {
             UIColor * color = [UIColor colorWithRed:0.27 green:0.75 blue:0.78 alpha:1.00];
@@ -39,6 +40,8 @@ void(^didScroll)(UIScrollView * scrollView);
             } else {
                 [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:0]];
             }
+    
+        
     };
 
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -78,11 +81,11 @@ void(^didScroll)(UIScrollView * scrollView);
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.view addSubview:_tableView];
 
-       
         
         [_tableView cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
             [make scrollViewDidScroll:didScroll];
-
+            make.moveSectionHeader(NO);
+           
 
             [make makeSection:^void(CBTableViewSectionMaker * section) {
                 section.cell([CycleScrollViewCell class]);
@@ -91,7 +94,15 @@ void(^didScroll)(UIScrollView * scrollView);
                 section.adapter(^(CycleScrollViewCell * cell,NSArray * data,NSUInteger index){
                     cell.data = data;
                 });
-              
+                section.headerView(^UIView *{
+                   
+                    UIView * testView = [UIView new];
+                    testView.backgroundColor = [UIColor redColor];
+                    testView.frame = CGRectMake(0, 0, 100, 50);
+                    
+                    return testView;
+                    
+                });
                 section.height(SCREEN_WIDTH * 0.48f);
             }];
             
@@ -102,7 +113,17 @@ void(^didScroll)(UIScrollView * scrollView);
                         .adapter(^(HomeCategoryCell * cell,NSArray * data,NSUInteger index){
                             cell.category = data;
                         })
-                        .height(SCREEN_WIDTH * 0.48f);
+                        .height(SCREEN_WIDTH * 0.48f)
+                
+                 .headerView(^UIView *{
+                    
+                    UIView * testView = [UIView new];
+                    testView.backgroundColor = [UIColor blueColor];
+                    testView.frame = CGRectMake(0, 0, 100, 100);
+                    
+                    return testView;
+                    
+                });
             }];
           
             [make makeSection:^void(CBTableViewSectionMaker * section) {

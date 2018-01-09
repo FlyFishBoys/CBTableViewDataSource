@@ -7,7 +7,7 @@
 
 @class DemoOneViewModel;
 
-@interface DemoOneViewController : UIViewController
+@interface DemoOneViewController : UIViewController<UIScrollViewDelegate>
 @property(nonatomic, strong) DemoOneViewModel * viewModel;
 @property(nonatomic, strong) UITableView * tableView;
 @end

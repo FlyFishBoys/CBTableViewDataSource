@@ -15,6 +15,7 @@
     self = [super init];
     if (self) {
         self.tableView = tableView;
+        self.tableView.cbTableViewDataSource.moveSectionHeaderEnable = NO;
     }
     return self;
 }
@@ -44,6 +45,15 @@
     };
 }
 
+-(CBTableViewDataSourceMaker *(^)(BOOL))moveSectionHeader
+{
+    return ^CBTableViewDataSourceMaker *(BOOL enable) {
+        self.tableView.cbTableViewDataSource.moveSectionHeaderEnable = enable;
+        
+        return self;
+    };
+}
+
 - (void)commitEditing:(void (^)(UITableView * tableView,UITableViewCellEditingStyle * editingStyle, NSIndexPath * indexPath))block {
     self.commitEditingBlock = block;
 }
@@ -51,6 +61,7 @@
 - (void)scrollViewDidScroll:(void (^)(UIScrollView * scrollView))block {
     self.scrollViewDidScrollBlock = block;
 }
+
 
 
 - (void)makeSection:(void (^)(CBTableViewSectionMaker * section))block {

@@ -24,10 +24,16 @@ static NSString * getIdentifier (){
 
 +(void)load
 {
+    [self hook_layoutSubviews];
+}
+
++(void)hook_layoutSubviews
+{
     Method originalMethod = class_getInstanceMethod(self, @selector(layoutSubviews));
     Method swizzledMethod = class_getInstanceMethod(self, @selector(new_layoutSubviews));
     method_exchangeImplementations(originalMethod, swizzledMethod);
 }
+
 
 -(void)new_layoutSubviews
 {
@@ -41,7 +47,6 @@ static NSString * getIdentifier (){
         [self setLayoutMargins:self.separatorInset];
     }
 }
-
 
 - (CBBaseTableViewDataSource *)cbTableViewDataSource {
     return objc_getAssociatedObject(self,_cmd);
@@ -59,12 +64,13 @@ static NSString * getIdentifier (){
     if(make.commitEditingBlock||make.scrollViewDidScrollBlock) {
         DataSourceClass = objc_allocateClassPair([CBBaseTableViewDataSource class], [getIdentifier() UTF8String],0);
         if(make.commitEditingBlock) {
-            class_addMethod(DataSourceClass,NSSelectorFromString(@"tableView:commitEditingStyle:forRowAtIndexPath:"),(IMP)commitEditing,"v@:@@@");
+        class_addMethod(DataSourceClass,NSSelectorFromString(@"tableView:commitEditingStyle:forRowAtIndexPath:"),(IMP)commitEditing,"v@:@@@");
             delegates[@"tableView:commitEditingStyle:forRowAtIndexPath:"] = make.commitEditingBlock;
         }
         if(make.scrollViewDidScrollBlock) {
-            class_addMethod(DataSourceClass,NSSelectorFromString(@"scrollViewDidScroll:"),(IMP)scrollViewDidScroll,"v@:@");
-            delegates[@"scrollViewDidScroll:"] = make.scrollViewDidScrollBlock;
+        class_addMethod(DataSourceClass,NSSelectorFromString(@"scrollViewDidScroll:"),(IMP)scrollViewDidScroll,"v@:@"); //动态添加方法
+        delegates[@"scrollViewDidScroll:"] = make.scrollViewDidScrollBlock;
+           
         }
     }
 
@@ -150,5 +156,21 @@ static void scrollViewDidScroll(id self, SEL cmd, UIScrollView * scrollView) {
     if(block) {
         block(scrollView);
     }
+    
+    if (ds.moveSectionHeaderEnable) {
+        CGFloat max = [[ds.sections valueForKeyPath:@"@max.maxHeaderHeight"] floatValue];
+        
+        CGFloat sectionHeaderHeight = max;
+        
+        if (sectionHeaderHeight>0) {
+            
+            if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+                scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+            } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+                scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+            }
+        }
+    }
+    
 };
 

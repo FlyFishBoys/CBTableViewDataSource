@@ -19,10 +19,14 @@
 - (CBTableViewDataSourceMaker * (^)(CGFloat))height;
 - (CBTableViewDataSourceMaker * (^)(UIView * (^)()))headerView;
 - (CBTableViewDataSourceMaker * (^)(UIView * (^)()))footerView;
+@property (nonatomic,readonly) CBTableViewDataSourceMaker * (^moveSectionHeader)(BOOL);
+
+
 
 - (void)commitEditing:(void(^)(UITableView * tableView,UITableViewCellEditingStyle * editingStyle,NSIndexPath * indexPath))block;
 - (void)scrollViewDidScroll:(void(^)(UIScrollView *scrollView))block;
 
 @property(nonatomic, copy) void(^commitEditingBlock)(UITableView * tableView,UITableViewCellEditingStyle * editingStyle,NSIndexPath * indexPath);
 @property(nonatomic, copy) void(^scrollViewDidScrollBlock)(UIScrollView *scrollView);
+
 @end

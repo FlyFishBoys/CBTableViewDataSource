@@ -72,7 +72,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if(self.sections[(NSUInteger) section].headerView) {
-        return self.sections[(NSUInteger) section].headerView.frame.size.height;
+        
+        CBDataSourceSection * _section =  self.sections[(NSUInteger) section];
+        _section.maxHeaderHeight =  MAX(_section.maxHeaderHeight, _section.headerView.frame.size.height);
+        return _section.headerView.frame.size.height;
     } else if(self.sections[(NSUInteger) section].headerTitle) {
         return 40;
     } else {
@@ -82,7 +85,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     if(self.sections[(NSUInteger) section].footerView) {
-        return self.sections[(NSUInteger) section].footerView.frame.size.height;
+        
+        CBDataSourceSection * _section =  self.sections[(NSUInteger) section];
+        return _section.footerView.frame.size.height;
     } else if(self.sections[(NSUInteger) section].footerTitle) {
         return 40;
     } else {
