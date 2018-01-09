@@ -15,7 +15,7 @@
 - (void)cb_makeDataSource:(void (^)(CBTableViewDataSourceMaker * make))maker;
 - (void)cb_makeSectionWithData:(NSArray *)data;
 - (void)cb_makeSectionWithData:(NSArray *)data andCellClass:(Class)cellClass;
-
+- (void)cb_makeDataSourceExtend:(CBTableViewDataSourceMaker *)maker;
 @end
 
 __attribute__((unused)) static void commitEditing(id self, SEL cmd, UITableView * tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath * indexPath);

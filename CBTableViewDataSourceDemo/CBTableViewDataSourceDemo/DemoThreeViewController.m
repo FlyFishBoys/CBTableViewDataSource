@@ -83,11 +83,25 @@ void(^didScroll)(UIScrollView * scrollView);
 
         
         [_tableView cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
-            make.scrollViewDidScrollBlock = ^(UIScrollView *scrollView) {
-                NSLog(@"tableView 滚动了********");
-            };
+//            make.scrollViewDidScrollBlock = ^(UIScrollView *scrollView) {
+//                NSLog(@"tableView 滚动了********");
+//            };
             make.moveSectionHeader(NO);
-           
+        
+//            make.refreshBlock(^(RefreshType type) {
+//                if (type==RefreshType_pull) {
+//                    NSLog(@"下拉刷新--------");
+//                }else
+//                {
+//                    NSLog(@"上拉加载--------");
+//
+//                }
+//            });
+            
+            make.refreshCompentsBlock(^RefreshCompentsType{
+                  NSLog(@"上拉加载--------");
+                return RefreshCompentsType_footer;
+            });
 
             [make makeSection:^void(CBTableViewSectionMaker * section) {
                 section.cell([CycleScrollViewCell class]);

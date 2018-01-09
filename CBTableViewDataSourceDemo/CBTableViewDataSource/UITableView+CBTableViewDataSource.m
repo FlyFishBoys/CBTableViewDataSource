@@ -56,6 +56,8 @@ static NSString * getIdentifier (){
     objc_setAssociatedObject(self,@selector(cbTableViewDataSource),cbTableViewDataSource,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+
+
 - (void)cb_makeDataSource:(void(^)(CBTableViewDataSourceMaker * make))maker {
     CBTableViewDataSourceMaker * make = [[CBTableViewDataSourceMaker alloc] initWithTableView:self];
     maker(make);
@@ -84,6 +86,9 @@ static NSString * getIdentifier (){
     self.cbTableViewDataSource = ds;
     self.dataSource = ds;
     self.delegate = ds;
+    
+    //extend  code for categiorys
+    [self cb_makeDataSourceExtend:make];
 }
 
 - (void)cb_makeSectionWithData:(NSArray *)data {
