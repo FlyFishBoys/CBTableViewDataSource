@@ -150,12 +150,49 @@ static void commitEditing(id self, SEL cmd, UITableView *tableView,UITableViewCe
     }
 }
 
+
 static void scrollViewDidScroll(id self, SEL cmd, UIScrollView * scrollView) {
     CBBaseTableViewDataSource * ds = self;
     void(^block)(UIScrollView *) = ds.delegates[NSStringFromSelector(cmd)];
     if(block) {
         block(scrollView);
     }
+    
+    UIViewController * controller;
+    
+    UIWindow * window        = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal) {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows) {
+            if (tmpWin.windowLevel == UIWindowLevelNormal) {
+                window = tmpWin;
+                break;
+            }
+        }
+    }
+    
+    UIView *frontView = [[window subviews] objectAtIndex:0];
+    id nextResponder  = [frontView nextResponder];
+    
+    if ([nextResponder isKindOfClass:[UIViewController class]])
+        controller = nextResponder;
+    if ([controller isKindOfClass:[UITabBarController class]]) {
+        
+        UITabBarController * tabVC = (UITabBarController*)controller;
+        
+        controller = tabVC.selectedViewController;
+    }
+    
+    if ([controller isKindOfClass:[UINavigationController class]]) {
+        UINavigationController * nav =  (UINavigationController *) controller;
+        controller = nav.visibleViewController;
+    }
+    else {
+        controller = window.rootViewController;
+  
+     }
+   NSString * tips = [NSString stringWithFormat:@"必须设置%@.edgesForExtendedLayout== UIRectEdgeNone，moveSectionHeaderEnable 的效果才能有效", NSStringFromClass([controller class])];
+    NSCAssert(controller.edgesForExtendedLayout == UIRectEdgeNone,tips );
     
     if (ds.moveSectionHeaderEnable) {
         CGFloat max = [[ds.sections valueForKeyPath:@"@max.maxHeaderHeight"] floatValue];

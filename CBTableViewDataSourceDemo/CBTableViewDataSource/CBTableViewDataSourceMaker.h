@@ -16,9 +16,10 @@
 @property(nonatomic, strong) NSMutableArray * sections;
 
 - (instancetype)initWithTableView:(UITableView *)tableView;
-- (CBTableViewDataSourceMaker * (^)(CGFloat))height;
-- (CBTableViewDataSourceMaker * (^)(UIView * (^)()))headerView;
-- (CBTableViewDataSourceMaker * (^)(UIView * (^)()))footerView;
+
+@property (nonatomic,readonly) CBTableViewDataSourceMaker * (^headerView)(UIView * (^)());
+@property (nonatomic,readonly) CBTableViewDataSourceMaker * (^footerView)(UIView * (^)());
+@property (nonatomic,readonly) CBTableViewDataSourceMaker * (^height)(CGFloat);
 @property (nonatomic,readonly) CBTableViewDataSourceMaker * (^moveSectionHeader)(BOOL);
 
 

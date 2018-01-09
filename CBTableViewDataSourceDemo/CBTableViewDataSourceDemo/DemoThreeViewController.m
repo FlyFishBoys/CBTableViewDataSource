@@ -83,7 +83,9 @@ void(^didScroll)(UIScrollView * scrollView);
 
         
         [_tableView cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
-            [make scrollViewDidScroll:didScroll];
+            make.scrollViewDidScrollBlock = ^(UIScrollView *scrollView) {
+                NSLog(@"tableView 滚动了********");
+            };
             make.moveSectionHeader(NO);
            
 
