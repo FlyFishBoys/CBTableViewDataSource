@@ -15,7 +15,7 @@
 #import "UINavigationBar+Awesome.h"
 #import "CBTableViewDataSource/CBTableViewDataSource.h"
 #import "Masonry.h"
-
+#import "MJDIYHeader.h"
 
 typedef void(^AdapaterBlock)(UITableViewCell * cell,NSArray * data,NSUInteger index);
 
@@ -83,9 +83,9 @@ void(^didScroll)(UIScrollView * scrollView);
 
         
         [_tableView cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
-//            make.scrollViewDidScrollBlock = ^(UIScrollView *scrollView) {
-//                NSLog(@"tableView 滚动了********");
-//            };
+            make.scrollViewDidScrollBlock = ^(UIScrollView *scrollView) {
+                NSLog(@"tableView 滚动了********");
+            };
             make.moveSectionHeader(NO);
         
 //            make.refreshBlock(^(RefreshType type) {
@@ -98,10 +98,26 @@ void(^didScroll)(UIScrollView * scrollView);
 //                }
 //            });
             
+            make.emptyDataView(^UIView *{
+               
+                UIView * emptyView = [UIView new];
+                emptyView.backgroundColor = [UIColor redColor];
+                emptyView.frame = _tableView.bounds;
+                return emptyView;
+                
+            });
+            
             make.refreshCompentsBlock(^RefreshCompentsType{
                   NSLog(@"上拉加载--------");
-                return RefreshCompentsType_footer;
+                return RefreshCompentsType_header;
             });
+            
+            make.mjRefreshHeader(^MJRefreshHeader *{
+               
+                MJDIYHeader * headder = [MJDIYHeader new];
+                return headder;
+            });
+            
 
             [make makeSection:^void(CBTableViewSectionMaker * section) {
                 section.cell([CycleScrollViewCell class]);
@@ -138,6 +154,10 @@ void(^didScroll)(UIScrollView * scrollView);
                     testView.frame = CGRectMake(0, 0, 100, 100);
                     
                     return testView;
+                    
+                });
+                
+                section.adapter(^(id cell, id data, NSUInteger index) {
                     
                 });
             }];

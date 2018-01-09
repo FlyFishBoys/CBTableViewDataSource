@@ -23,7 +23,6 @@
 @property (nonatomic,readonly) CBTableViewDataSourceMaker * (^moveSectionHeader)(BOOL);
 
 
-
 - (void)commitEditing:(void(^)(UITableView * tableView,UITableViewCellEditingStyle * editingStyle,NSIndexPath * indexPath))block;
 - (void)scrollViewDidScroll:(void(^)(UIScrollView *scrollView))block;
 

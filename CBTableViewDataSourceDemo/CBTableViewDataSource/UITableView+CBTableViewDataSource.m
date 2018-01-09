@@ -20,8 +20,6 @@ static NSString * getIdentifier (){
 }
 
 @implementation UITableView (CBTableViewDataSource)
-
-
 +(void)load
 {
     [self hook_layoutSubviews];

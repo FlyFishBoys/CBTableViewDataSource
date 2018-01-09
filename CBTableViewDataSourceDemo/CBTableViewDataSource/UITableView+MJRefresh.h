@@ -19,8 +19,17 @@ typedef NS_ENUM(NSInteger,RefreshType) {
 typedef NS_ENUM(NSInteger,RefreshCompentsType) {
     RefreshCompentsType_Normal,//header and footer ,use -- refreshBlock
     RefreshCompentsType_footer,//footer
-    RefreshCompentsType_header //header
+    RefreshCompentsType_header,//header
 };
+
+
+typedef NS_ENUM(NSInteger,RefreshCompentsDIYType) {
+    RefreshCompentsDIYType_Normal,//header and footer ,defaults
+    RefreshCompentsDIYType_header,//diy_header
+    RefreshCompentsDIYType_footer, //diy_footer
+    RefreshCompentsDIYType_headerAndFooter, // diy_header and footer
+};
+
 
 typedef void(^CBRefreshBlock)(RefreshType refreshType);
 
@@ -29,8 +38,16 @@ typedef void(^CBRefreshBlock)(RefreshType refreshType);
 @property (nonatomic,readonly) CBTableViewDataSourceMaker * (^refreshBlock)(void (^)(RefreshType type));// equal refreshCompentsBlock return RefreshCompentsType_Normal
 @property (nonatomic,readonly) CBTableViewDataSourceMaker * (^refreshCompentsBlock)(RefreshCompentsType (^)());// only set header or footer, if set all please use -- refreshBlock
 
-@property (nonatomic,copy) CBRefreshBlock cb_refreshBlock ;
-@property (nonatomic,assign) RefreshCompentsType refreshCompentsType ;
+@property (nonatomic,copy)   CBRefreshBlock cb_refreshBlock ;
+@property (nonatomic,assign) RefreshCompentsType refreshCompentsType;
+@property (nonatomic,assign) RefreshCompentsDIYType refreshCompentsDIYType;
+@property (nonatomic,copy)   NSString *  refreshHeaderDIYClass ;
+@property (nonatomic,copy)   NSString *  refreshFooterDIYClass ;
+
+
+@property (nonatomic,readonly) CBTableViewDataSourceMaker * (^emptyDataView) (UIView * (^)());
+@property (nonatomic,readonly) CBTableViewDataSourceMaker * (^mjRefreshFooter)(MJRefreshFooter * (^)());
+@property (nonatomic,readonly) CBTableViewDataSourceMaker * (^mjRefreshHeader)(MJRefreshHeader * (^)());
 
 @end;
 
@@ -38,5 +55,7 @@ typedef void(^CBRefreshBlock)(RefreshType refreshType);
 
 @interface UITableView (MJRefresh)
 
+@property (nonatomic,strong) UIView * emptyDataView;
+@property (nonatomic,assign) NSUInteger rowCount;
 
 @end

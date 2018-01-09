@@ -82,6 +82,7 @@
 		D19DD0D71D02FC3300774243 /* BaseNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D19DD0D61D02FC3300774243 /* BaseNavigationViewController.m */; };
 		D19DD0DE1D03130400774243 /* HomeActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D19DD0DB1D03130400774243 /* HomeActivityCell.m */; };
 		D19DD0DF1D03130400774243 /* HomeCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D19DD0DD1D03130400774243 /* HomeCategoryCell.m */; };
+		FF480D642004D12800E7F766 /* MJDIYHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FF480D622004D12800E7F766 /* MJDIYHeader.m */; };
 		FF80891020045C6F0026B746 /* UITableView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = FF80890F20045C6F0026B746 /* UITableView+MJRefresh.m */; };
 		FFBA7DAE200341D2004E7991 /* ClassA.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBA7DAD200341D2004E7991 /* ClassA.m */; };
 		FFBA7DB1200341E6004E7991 /* ClassB.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBA7DB0200341E6004E7991 /* ClassB.m */; };
@@ -217,6 +218,8 @@
 		D19DD0DB1D03130400774243 /* HomeActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeActivityCell.m; sourceTree = "<group>"; };
 		D19DD0DC1D03130400774243 /* HomeCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCategoryCell.h; sourceTree = "<group>"; };
 		D19DD0DD1D03130400774243 /* HomeCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCategoryCell.m; sourceTree = "<group>"; };
+		FF480D622004D12800E7F766 /* MJDIYHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJDIYHeader.m; sourceTree = "<group>"; };
+		FF480D632004D12800E7F766 /* MJDIYHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJDIYHeader.h; sourceTree = "<group>"; };
 		FF80890E20045C6E0026B746 /* UITableView+MJRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+MJRefresh.h"; sourceTree = "<group>"; };
 		FF80890F20045C6F0026B746 /* UITableView+MJRefresh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+MJRefresh.m"; sourceTree = "<group>"; };
 		FFBA7DAC200341D2004E7991 /* ClassA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassA.h; sourceTree = "<group>"; };
@@ -369,6 +372,8 @@
 		D19DD0821D02F0F000774243 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				FF480D632004D12800E7F766 /* MJDIYHeader.h */,
+				FF480D622004D12800E7F766 /* MJDIYHeader.m */,
 				D19DD0D51D02FC3300774243 /* BaseNavigationViewController.h */,
 				D19DD0D61D02FC3300774243 /* BaseNavigationViewController.m */,
 				D19DD0831D02F10100774243 /* MainViewController.h */,
@@ -664,7 +669,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		56023D2410891AD45AA5CEA0 /* [CP] Copy Pods Resources */ = {
@@ -717,6 +722,7 @@
 				D19DD0DE1D03130400774243 /* HomeActivityCell.m in Sources */,
 				D19DD0851D02F10100774243 /* MainViewController.m in Sources */,
 				FFBA7DAE200341D2004E7991 /* ClassA.m in Sources */,
+				FF480D642004D12800E7F766 /* MJDIYHeader.m in Sources */,
 				D19DD0D11D02F9CE00774243 /* DemoThreeViewModel.m in Sources */,
 				789F6881DF97F01ADDF3F9F7 /* CycleScrollViewCell.m in Sources */,
 				789F6C672082030B4B549E90 /* GoodsCell.m in Sources */,
