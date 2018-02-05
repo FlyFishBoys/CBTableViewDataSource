@@ -31,6 +31,8 @@ void(^didScroll)(UIScrollView * scrollView);
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
+    CGGradientRef ref;
+    
     didScroll = ^(UIScrollView * scrollView) {
             UIColor * color = [UIColor colorWithRed:0.27 green:0.75 blue:0.78 alpha:1.00];
             CGFloat offsetY = scrollView.contentOffset.y;
