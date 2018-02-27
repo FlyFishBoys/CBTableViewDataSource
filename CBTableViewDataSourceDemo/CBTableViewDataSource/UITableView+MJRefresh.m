@@ -115,7 +115,6 @@ static NSString * CBRefreshFooterDIYClasskey = @"CBRefreshFooterDIYClasskey";
         
         if (empty) {
             self.tableView.emptyDataView = empty();
-            [self.tableView addSubview:self.tableView.emptyDataView];
         }
         return self;
     };
@@ -186,11 +185,9 @@ static NSString * CBTableViewRowCountKey = @"CBTableViewRowCountKey";
     
     if (self.rowCount<1) {
         self.emptyDataView.hidden = NO;
-        self.scrollEnabled = NO;
     }else
     {
         self.emptyDataView.hidden = YES;
-        self.scrollEnabled = YES;
     }
 }
 
